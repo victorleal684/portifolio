@@ -631,11 +631,9 @@ footer {
   justify-content: center;
   position: relative;
   background: transparent;
-  opacity: .38;
+  opacity: .35;
   transform: scale(.82);
-  transition:
-    opacity .45s ease,
-    transform .45s ease;
+  transition: opacity .45s ease, transform .45s ease;
   z-index: 1;
 }
 
@@ -645,7 +643,6 @@ footer {
   z-index: 2;
 }
 
-/* Player vertical */
 .video-wrap {
   position: relative;
   width: 100%;
@@ -668,14 +665,12 @@ footer {
   background: #000;
 }
 
-/* Informações dos vídeos */
 .video-info {
   width: 100%;
   max-width: 300px;
   padding: 18px 0 25px;
   border: none;
   text-align: center;
-  transition: opacity .3s ease;
 }
 
 .video-info span {
@@ -715,16 +710,12 @@ footer {
   cursor: pointer;
   z-index: 5;
   backdrop-filter: blur(10px);
-  transition:
-    transform .2s ease,
-    border-color .2s ease,
-    background .2s ease;
+  transition: transform .2s ease, border-color .2s ease;
 }
 
 .carousel-arrow:hover {
   transform: scale(1.06);
   border-color: rgba(215,181,109,.55);
-  background: rgba(25,25,25,.95);
 }
 
 .carousel-arrow.prev {
@@ -764,7 +755,7 @@ footer {
   background: var(--accent);
 }
 
-/* Áreas de deslize nas laterais */
+/* Áreas de deslize */
 .video-wrap .swipe-zone {
   position: absolute;
   z-index: 5;
@@ -782,7 +773,7 @@ footer {
   right: 0;
 }
 
-/* Tablet e celular */
+/* Celular */
 @media (max-width: 720px) {
   .video-carousel {
     max-width: 100%;
@@ -790,16 +781,16 @@ footer {
   }
 
   .video-slide {
-    flex-basis: 70%;
-    min-width: 70%;
+    flex-basis: 62%;
+    min-width: 62%;
   }
 
   .video-wrap {
-    max-width: 220px;
+    max-width: 200px;
   }
 
   .video-info {
-    max-width: 220px;
+    max-width: 200px;
     padding: 16px 0 20px;
   }
 
@@ -822,4 +813,3 @@ footer {
     bottom: 22px;
   }
 }
-
