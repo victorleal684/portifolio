@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
 
 :root {
@@ -592,8 +593,6 @@ footer {
   }
 }
 
-/* Video carousel */
-
 /* =====================================
    VIDEO CAROUSEL - VERTICAL SHOWCASE
 ===================================== */
@@ -613,6 +612,22 @@ footer {
   background: transparent;
   box-shadow: none;
   touch-action: pan-y;
+
+  /* Fade suave nas extremidades */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
 }
 
 .video-track {
@@ -623,8 +638,8 @@ footer {
 }
 
 .video-slide {
-  flex: 0 0 50%;
-  min-width: 50%;
+  flex: 0 0 56%;
+  min-width: 56%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -653,6 +668,7 @@ footer {
   background: #000;
   overflow: hidden;
   flex-shrink: 0;
+  border-radius: 18px;
 }
 
 .video-wrap iframe {
@@ -781,17 +797,35 @@ footer {
   }
 
   .video-slide {
-    flex-basis: 62%;
-    min-width: 62%;
+    flex-basis: 68%;
+    min-width: 68%;
   }
 
   .video-wrap {
     max-width: 200px;
+    border-radius: 14px;
   }
 
   .video-info {
     max-width: 200px;
     padding: 16px 0 20px;
+  }
+
+  .video-viewport {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 7%,
+      black 93%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 7%,
+      black 93%,
+      transparent 100%
+    );
   }
 
   .carousel-arrow {
