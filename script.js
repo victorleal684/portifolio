@@ -2,61 +2,84 @@
 const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();
 
+// Menu mobile
 const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav");
 
 menuToggle?.addEventListener("click", () => {
-  nav.classList.toggle("open");
+  nav?.classList.toggle("open");
 });
 
 document.querySelectorAll(".nav a").forEach((link) => {
-  link.addEventListener("click", () => nav.classList.remove("open"));
+  link.addEventListener("click", () => {
+    nav?.classList.remove("open");
+  });
 });
 
+// Animações de entrada
 const reveals = document.querySelectorAll(".reveal");
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  },
-  { threshold: 0.14 }
-);
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.14 }
+  );
 
-reveals.forEach((element) => observer.observe(element));
+  reveals.forEach((element) => observer.observe(element));
+} else {
+  reveals.forEach((element) => element.classList.add("visible"));
+}
 
-// Selected videos carousel
-
+// Carrossel de vídeos
 document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   const track = carousel.querySelector(".video-track");
   const slides = [...carousel.querySelectorAll(".video-slide")];
-  const prev = carousel.querySelector(".prev");
-  const next = carousel.querySelector(".next");
+  const prev = carousel.querySelector(".carousel-arrow.prev");
+  const next = carousel.querySelector(".carousel-arrow.next");
   const dots = carousel.querySelector(".carousel-dots");
+  const viewport = carousel.querySelector(".video-viewport");
+
+  if (!track || !slides.length || !prev || !next || !dots || !viewport) {
+    console.warn("Estrutura do carrossel incompleta.");
+    return;
+  }
 
   let index = 0;
   let startX = 0;
   let currentX = 0;
 
+  // Cria os indicadores
+  dots.innerHTML = "";
+
   slides.forEach((_, i) => {
     const dot = document.createElement("button");
+
     dot.className = "carousel-dot" + (i === 0 ? " active" : "");
     dot.type = "button";
-    dot.setAttribute("aria-label", `Go to video ${i + 1}`);
-    dot.onclick = () => goTo(i);
+    dot.setAttribute("aria-label", `Ir para o vídeo ${i + 1}`);
+
+    dot.addEventListener("click", () => goTo(i));
+
     dots.appendChild(dot);
   });
 
+  // Pausa o vídeo do slide anterior
   function pauseSlide(slide) {
-    // Pause local MP4 videos
     const video = slide.querySelector("video");
-    if (video) video.pause();
 
-    // Pause YouTube videos
+    if (video) {
+      video.pause();
+    }
+
     const iframe = slide.querySelector("iframe");
+
     if (iframe) {
       iframe.contentWindow?.postMessage(
         JSON.stringify({
@@ -69,11 +92,11 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     }
   }
 
+  // Atualiza o carrossel
   function goTo(i) {
-    const previousSlide = slides[index];
-
-    // Pause the previous video before changing slides
-    if (previousSlide) pauseSlide(previousSlide);
+    if (slides[index]) {
+      pauseSlide(slides[index]);
+    }
 
     index = (i + slides.length) % slides.length;
 
@@ -88,11 +111,16 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     });
   }
 
-  prev.onclick = () => goTo(index - 1);
-  next.onclick = () => goTo(index + 1);
+  // Setas
+  prev.addEventListener("click", () => {
+    goTo(index - 1);
+  });
 
-  const viewport = carousel.querySelector(".video-viewport");
+  next.addEventListener("click", () => {
+    goTo(index + 1);
+  });
 
+  // Navegação por toque no celular
   viewport.addEventListener(
     "touchstart",
     (e) => {
@@ -117,4 +145,7 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
       goTo(distance < 0 ? index + 1 : index - 1);
     }
   });
+
+  // Estado inicial
+  goTo(0);
 });
