@@ -1,203 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Victor Leal — Video Editor & Filmmaker</title>
-  <meta name="description" content="Victor Leal is a Video Editor, Social Media professional and Filmmaker specialized in short-form content, direct response creatives, VSLs and high-retention videos." />
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de edição de vídeo e criação de conteúdo.">
+  <title>Portfólio | Editor de Vídeo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="grain"></div>
   <div class="spotlight"></div>
 
   <header class="site-header">
-    <a href="#home" class="logo">VICTOR<span>LEAL</span></a>
-
-    <button class="menu-toggle" aria-label="Open menu">
+    <a class="logo" href="#inicio">SEU NOME<span>.</span></a>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
       <span></span><span></span>
     </button>
-
     <nav class="nav">
-      <a href="#reel">Demo Reel</a>
-      <a href="#work">Work</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
+      <a href="#inicio">Início</a>
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#contato">Contato</a>
     </nav>
   </header>
 
   <main>
-    <section id="home" class="hero section">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">Video Editor • Social Media • Filmmaker</p>
-        <h1>High-retention videos for brands, ads and social media.</h1>
-        <p class="hero-text">
-          I create dynamic edits, short-form videos, direct response creatives and VSLs
-          for digital platforms such as YouTube, Shorts, Instagram and TikTok.
-        </p>
-
+    <section class="section hero" id="inicio">
+      <div class="hero-content reveal">
+        <p class="eyebrow">EDIÇÃO DE VÍDEO · CRIAÇÃO DE CONTEÚDO</p>
+        <h1>IDEIAS QUE<br>GANHAM<br><span class="accent-text">MOVIMENTO.</span></h1>
+        <p class="hero-text">Transformo ideias em vídeos que comunicam, envolvem e deixam uma impressão. Edição criativa, atenção aos detalhes e compromisso com cada projeto.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#reel">Watch Demo Reel</a>
-          <a class="btn secondary" href="#contact">Let's Talk</a>
+          <a class="btn primary" href="#trabalhos">Conheça meu trabalho</a>
+          <a class="btn secondary" href="#contato">Entre em contato</a>
         </div>
       </div>
-
-      <div class="hero-visual reveal">
+      <div class="hero-visual reveal" aria-hidden="true">
         <div class="frame">
+          <span class="frame-label">PORTFÓLIO CRIATIVO / 2026</span>
           <div class="scanline"></div>
-          <p class="frame-label">PORTFOLIO / 2026</p>
-          <h2>VIDEO<br />EDITOR</h2>
-          <p class="frame-bottom">Premiere • After Effects • CapCut • Photoshop • AI</p>
+          <h2>VISUAL<br>STORY<br>TELLING</h2>
+          <span class="frame-bottom">CRIATIVIDADE EM CADA FRAME</span>
         </div>
       </div>
     </section>
 
-    <section id="reel" class="section reel-section">
+    <section class="section" id="trabalhos">
       <div class="section-heading reveal">
-        <p class="eyebrow">Featured</p>
-        <h2>Demo Reel</h2>
-        <p>
-          Replace this placeholder with your YouTube, Vimeo or Google Drive video embed.
-        </p>
+        <p class="eyebrow">PORTFÓLIO</p>
+        <h2>Conheça meu trabalho.</h2>
+        <p>Uma seleção de vídeos que mostram um pouco do meu processo criativo e da minha experiência.</p>
       </div>
 
-      <div class="reel-card reveal">
-        <div class="play-button" aria-hidden="true"></div>
-        <div>
-          <h3>Your Demo Reel Goes Here</h3>
-          <p>
-            Add your strongest edits first: ads, reels, YouTube cuts, motion graphics,
-            direct response creatives and before/after scenes.
-          </p>
+      <div class="video-carousel reveal" aria-label="Carrossel de vídeos do portfólio">
+        <button class="carousel-arrow prev" type="button" aria-label="Vídeo anterior">‹</button>
+        <div class="video-viewport">
+          <div class="video-track">
+            <div class="video-slide">
+              <div class="video-wrap">
+                <video controls playsinline preload="metadata">
+                  <source src="videos/video-01.mp4" type="video/mp4">
+                  Seu navegador não suporta vídeo.
+                </video>
+              </div>
+            </div>
+            <div class="video-slide">
+              <div class="video-wrap">
+                <video controls playsinline preload="metadata">
+                  <source src="videos/video-02.mp4" type="video/mp4">
+                  Seu navegador não suporta vídeo.
+                </video>
+              </div>
+            </div>
+            <div class="video-slide">
+              <div class="video-wrap">
+                <video controls playsinline preload="metadata">
+                  <source src="videos/video-03.mp4" type="video/mp4">
+                  Seu navegador não suporta vídeo.
+                </video>
+              </div>
+            </div>
+            <div class="video-slide">
+              <div class="video-wrap">
+                <video controls playsinline preload="metadata">
+                  <source src="videos/video-04.mp4" type="video/mp4">
+                  Seu navegador não suporta vídeo.
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-arrow next" type="button" aria-label="Próximo vídeo">›</button>
+        <div class="carousel-dots" aria-label="Selecionar vídeo">
+          <button class="carousel-dot active" aria-label="Vídeo 1"></button>
+          <button class="carousel-dot" aria-label="Vídeo 2"></button>
+          <button class="carousel-dot" aria-label="Vídeo 3"></button>
+          <button class="carousel-dot" aria-label="Vídeo 4"></button>
         </div>
       </div>
+      <p class="video-note">Para adicionar seus vídeos, coloque os arquivos MP4 na pasta <code>videos</code> e use os nomes indicados no guia.</p>
     </section>
 
-    <section id="work" class="section">
+    <section class="section split-section" id="sobre">
       <div class="section-heading reveal">
-        <p class="eyebrow">Portfolio</p>
-        <h2>Selected Work</h2>
-        <p>Use these cards to showcase your best projects, videos and campaigns.</p>
+        <p class="eyebrow">UM POUCO SOBRE MIM</p>
+        <h2>Olhar atento.<br>Execução precisa.</h2>
       </div>
-
-      <div class="work-grid">
-        <article class="project-card reveal">
-          <span>01</span>
-          <h3>Short-Form Content</h3>
-          <p>Fast-paced edits for Instagram Reels, TikTok and YouTube Shorts.</p>
-          <a href="#" aria-label="Add project link">Add link →</a>
-        </article>
-
-        <article class="project-card reveal">
-          <span>02</span>
-          <h3>Direct Response Creatives</h3>
-          <p>Sales-focused ad creatives designed for paid traffic campaigns.</p>
-          <a href="#" aria-label="Add project link">Add link →</a>
-        </article>
-
-        <article class="project-card reveal">
-          <span>03</span>
-          <h3>YouTube Editing</h3>
-          <p>Dynamic video editing focused on pacing, retention and storytelling.</p>
-          <a href="#" aria-label="Add project link">Add link →</a>
-        </article>
-
-        <article class="project-card reveal">
-          <span>04</span>
-          <h3>VSLs & Mini VSLs</h3>
-          <p>Editing for sales videos, hooks, transitions and conversion-oriented structure.</p>
-          <a href="#" aria-label="Add project link">Add link →</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" class="section split-section">
-      <div class="section-heading reveal">
-        <p class="eyebrow">What I do</p>
-        <h2>Skills & Services</h2>
-      </div>
-
-      <div class="skills-list reveal">
-        <div>
-          <h3>Video Editing</h3>
-          <p>Adobe Premiere, After Effects and CapCut for dynamic edits and platform-ready content.</p>
-        </div>
-        <div>
-          <h3>Marketing Creatives</h3>
-          <p>VSLs, mini VSLs, direct response creatives, social media assets and paid traffic content.</p>
-        </div>
-        <div>
-          <h3>Design & AI</h3>
-          <p>Adobe Photoshop and AI-powered image creation integrated into the production workflow.</p>
-        </div>
-        <div>
-          <h3>Social Media</h3>
-          <p>Content ideas, scripts, image posts, video posts and organic content for digital platforms.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience" class="section">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Background</p>
-        <h2>Experience</h2>
-      </div>
-
-      <div class="timeline reveal">
-        <div class="timeline-item">
-          <span>2025 — 2026</span>
-          <h3>Filmmaker — Clínica Oscar Freire</h3>
-          <p>Recording and editing content for ads and Instagram, creating ideas, scripts, image posts and video posts.</p>
-        </div>
-        <div class="timeline-item">
-          <span>2025 — 2026</span>
-          <h3>Video Editor — Parcorp</h3>
-          <p>Editing sales creatives, lead generation content, organic videos, VSLs and mini VSLs.</p>
-        </div>
-        <div class="timeline-item">
-          <span>2025</span>
-          <h3>Video Editor / Web Designer — BMedia</h3>
-          <p>Maintaining web projects and producing creatives for betting and binary options campaigns.</p>
-        </div>
-        <div class="timeline-item">
-          <span>2023 — 2024</span>
-          <h3>Video Editor — Equipe do Dark</h3>
-          <p>Editing dynamic YouTube videos and short-form content for vertical platforms.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section about-section">
       <div class="about-card reveal">
-        <p class="eyebrow">About</p>
-        <h2>Focused on rhythm, retention and conversion.</h2>
-        <p>
-          My work combines editing, marketing and social media strategy to create content
-          that feels modern, clear and engaging. I work with fast learning, assertive communication
-          and a practical production workflow.
-        </p>
+        <p>Sou editor de vídeo e criador de conteúdo, com experiência em projetos para redes sociais, publicidade e mercado imobiliário.</p>
+        <p>Gosto de entender a proposta de cada trabalho e encontrar a melhor forma de contar aquela história. Sou uma pessoa detalhista, aprendo rápido e estou sempre buscando maneiras de aprimorar o resultado.</p>
+        <p>Meu objetivo é entregar vídeos bem construídos, com ritmo, identidade visual e atenção a cada detalhe.</p>
       </div>
     </section>
 
-    <section id="contact" class="section contact-section">
+    <section class="section split-section" id="experiencia">
       <div class="section-heading reveal">
-        <p class="eyebrow">Contact</p>
-        <h2>Let's create something.</h2>
-        <p>Available for video editing, creative production and social media projects.</p>
+        <p class="eyebrow">EXPERIÊNCIA</p>
+        <h2>Experiência que vira resultado.</h2>
       </div>
+      <div class="timeline reveal">
+        <article class="timeline-item">
+          <span>EDIÇÃO DE VÍDEO</span>
+          <h3>Conteúdo para redes sociais</h3>
+          <p>Criação e edição de vídeos e peças para redes sociais, incluindo conteúdos para agência e clínica de estética.</p>
+        </article>
+        <article class="timeline-item">
+          <span>MERCADO IMOBILIÁRIO</span>
+          <h3>Vídeos imobiliários</h3>
+          <p>Edição de vídeos para apresentação de imóveis, com foco em valorizar os espaços e apresentar os ambientes de forma clara e atrativa.</p>
+        </article>
+        <article class="timeline-item">
+          <span>PRODUÇÃO COM IA</span>
+          <h3>Ferramentas de inteligência artificial</h3>
+          <p>Experiência com ferramentas como Veo 3 e Higgsfield para criação de vídeos e apoio a projetos audiovisuais.</p>
+        </article>
+      </div>
+    </section>
 
+    <section class="section" id="habilidades">
+      <div class="section-heading reveal">
+        <p class="eyebrow">HABILIDADES</p>
+        <h2>O que posso entregar.</h2>
+      </div>
+      <div class="work-grid">
+        <article class="project-card reveal"><span>01</span><h3>Edição de vídeo</h3><p>Montagem, ritmo, cortes e finalização de vídeos.</p></article>
+        <article class="project-card reveal"><span>02</span><h3>Conteúdo social</h3><p>Vídeos pensados para formatos e plataformas digitais.</p></article>
+        <article class="project-card reveal"><span>03</span><h3>Storytelling visual</h3><p>Narrativa, escolha de imagens e construção de atmosfera.</p></article>
+        <article class="project-card reveal"><span>04</span><h3>IA generativa</h3><p>Exploração de ferramentas de IA em fluxos audiovisuais.</p></article>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contato">
+      <div class="section-heading reveal">
+        <p class="eyebrow">VAMOS CONVERSAR?</p>
+        <h2>Tem um projeto em mente?</h2>
+        <p>Entre em contato. Vai ser um prazer conversar sobre sua ideia e entender como posso ajudar.</p>
+      </div>
       <div class="contact-links reveal">
-        <a href="mailto:victorleal684@gmail.com">victorleal684@gmail.com</a>
-        <a href="https://wa.me/5511916842006" target="_blank" rel="noreferrer">WhatsApp</a>
-        <a href="#" aria-label="Add portfolio drive link">Portfolio Drive</a>
+        <a href="mailto:seuemail@email.com">E-mail</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.workana.com/" target="_blank" rel="noopener noreferrer">Workana</a>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>© <span id="year"></span> Victor Leal. Video Editor & Filmmaker.</p>
-  </footer>
+  <footer>© <span id="year"></span> Seu Nome. Todos os direitos reservados.</footer>
+  <script src="script.js"></script>
 </body>
 </html>

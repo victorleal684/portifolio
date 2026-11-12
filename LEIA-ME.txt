@@ -1,0 +1,23 @@
+PORTFÓLIO — COMO PERSONALIZAR
+
+1. Abra o arquivo index.html no navegador para visualizar o site.
+2. Coloque seus vídeos MP4 dentro da pasta "videos".
+3. Use estes nomes para os quatro primeiros vídeos:
+   - video-01.mp4
+   - video-02.mp4
+   - video-03.mp4
+   - video-04.mp4
+4. Para adicionar mais vídeos, duplique um bloco <div class="video-slide"> no index.html,
+   altere o caminho/nome do arquivo e adicione mais um botão .carousel-dot.
+5. No index.html, substitua:
+   - "SEU NOME" pelo seu nome ou nome profissional;
+   - seuemail@email.com pelo seu e-mail;
+   - os links de LinkedIn, Instagram e Workana pelos seus perfis;
+   - os textos de experiência caso queira ajustar datas, empresas ou funções.
+
+IMPORTANTE
+- Os vídeos devem estar em formato MP4 (H.264 recomendado).
+- Os arquivos precisam ficar dentro da pasta "videos", no mesmo nível do index.html.
+- Os nomes dos arquivos precisam corresponder exatamente aos caminhos no HTML.
+- Para publicar no GitHub Pages, envie index.html, styles.css, script.js e a pasta videos.
+- O site usa a fonte Inter do Google Fonts; sem internet, será usada uma fonte substituta.
