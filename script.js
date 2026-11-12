@@ -100,7 +100,21 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
 
     index = (i + slides.length) % slides.length;
 
-    track.style.transform = `translateX(-${index * 100}%)`;
+    const slide = slides[index];
+
+const offset =
+  viewport.clientWidth / 2 -
+  slide.offsetLeft -
+  slide.offsetWidth / 2;
+
+track.style.transform = `translateX(${offset}px)`;const slide = slides[index];
+
+const offset =
+  viewport.clientWidth / 2 -
+  slide.offsetLeft -
+  slide.offsetWidth / 2;
+
+track.style.transform = `translateX(${offset}px)`;
 
     slides.forEach((slide, n) => {
       slide.classList.toggle("active", n === index);
@@ -160,4 +174,15 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
 
   // Estado inicial
   goTo(0);
+});
+
+window.addEventListener("resize", () => {
+  const slide = slides[index];
+
+  const offset =
+    viewport.clientWidth / 2 -
+    slide.offsetLeft -
+    slide.offsetWidth / 2;
+
+  track.style.transform = `translateX(${offset}px)`;
 });
