@@ -121,30 +121,42 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   });
 
   // Navegação por toque no celular
-  viewport.addEventListener(
-    "touchstart",
-    (e) => {
-      startX = e.touches[0].clientX;
-      currentX = startX;
-    },
-    { passive: true }
-  );
+  
+  // Navegação por deslize no celular
+  slides.forEach((slide) => {
+    const videoWrap = slide.querySelector(".video-wrap");
+    if (!videoWrap) return;
 
-  viewport.addEventListener(
-    "touchmove",
-    (e) => {
-      currentX = e.touches[0].clientX;
-    },
-    { passive: true }
-  );
+    ["left", "right"].forEach((side) => {
+      const zone = document.createElement("div");
+      zone.className = `swipe-zone ${side}`;
+      zone.setAttribute("aria-hidden", "true");
 
-  viewport.addEventListener("touchend", () => {
-    const distance = currentX - startX;
+      let startX = 0;
+      let startY = 0;
 
-    if (Math.abs(distance) > 50) {
-      goTo(distance < 0 ? index + 1 : index - 1);
-    }
+      zone.addEventListener("pointerdown", (e) => {
+        startX = e.clientX;
+        startY = e.clientY;
+        zone.setPointerCapture(e.pointerId);
+      });
+
+      zone.addEventListener("pointerup", (e) => {
+        const distanceX = e.clientX - startX;
+        const distanceY = e.clientY - startY;
+
+        if (
+          Math.abs(distanceX) > 45 &&
+          Math.abs(distanceX) > Math.abs(distanceY)
+        ) {
+          goTo(distanceX < 0 ? index + 1 : index - 1);
+        }
+      });
+
+      videoWrap.appendChild(zone);
+    });
   });
+
 
   // Estado inicial
   goTo(0);
