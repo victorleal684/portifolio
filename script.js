@@ -1,4 +1,5 @@
 
+// Ano do rodapé
 const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();
 
@@ -40,28 +41,56 @@ if ("IntersectionObserver" in window) {
 // Carrossel de vídeos
 document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   const track = carousel.querySelector(".video-track");
-  const slides = [...carousel.querySelectorAll(".video-slide")];
+  const viewport = carousel.querySelector(".video-viewport");
   const prev = carousel.querySelector(".carousel-arrow.prev");
   const next = carousel.querySelector(".carousel-arrow.next");
   const dots = carousel.querySelector(".carousel-dots");
-  const viewport = carousel.querySelector(".video-viewport");
 
-  if (!track || !slides.length || !prev || !next || !dots || !viewport) {
+  const originalSlides = [...track.querySelectorAll(".video-slide")];
+
+  if (
+    !track ||
+    !viewport ||
+    !prev ||
+    !next ||
+    !dots ||
+    originalSlides.length === 0
+  ) {
     console.warn("Estrutura do carrossel incompleta.");
     return;
   }
 
+  const total = originalSlides.length;
+
+  // Cria cópias do último e do primeiro vídeo
+  const lastClone = originalSlides[total - 1].cloneNode(true);
+  const firstClone = originalSlides[0].cloneNode(true);
+
+  lastClone.classList.add("carousel-clone");
+  firstClone.classList.add("carousel-clone");
+
+  lastClone.setAttribute("aria-hidden", "true");
+  firstClone.setAttribute("aria-hidden", "true");
+
+  track.insertBefore(lastClone, originalSlides[0]);
+  track.appendChild(firstClone);
+
+  // Lista incluindo as cópias
+  const slides = [...track.querySelectorAll(".video-slide")];
+
+  // Começa no primeiro vídeo real
   let index = 0;
-  let startX = 0;
-  let currentX = 0;
+  let position = 1;
+
+  const transition = "transform .55s cubic-bezier(.22,.61,.36,1)";
 
   // Cria os indicadores
   dots.innerHTML = "";
 
-  slides.forEach((_, i) => {
+  originalSlides.forEach((_, i) => {
     const dot = document.createElement("button");
 
-    dot.className = "carousel-dot" + (i === 0 ? " active" : "");
+    dot.className = "carousel-dot";
     dot.type = "button";
     dot.setAttribute("aria-label", `Ir para o vídeo ${i + 1}`);
 
@@ -70,13 +99,13 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     dots.appendChild(dot);
   });
 
-  // Pausa o vídeo do slide anterior
+  // Pausa o vídeo anterior
   function pauseSlide(slide) {
+    if (!slide) return;
+
     const video = slide.querySelector("video");
 
-    if (video) {
-      video.pause();
-    }
+    if (video) video.pause();
 
     const iframe = slide.querySelector("iframe");
 
@@ -92,57 +121,77 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     }
   }
 
-  // Atualiza o carrossel
-  function goTo(i) {
-    if (slides[index]) {
-      pauseSlide(slides[index]);
-    }
+  // Centraliza o slide atual
+  function updatePosition(animate = true) {
+    const slide = slides[position];
 
-    index = (i + slides.length) % slides.length;
+    if (!slide) return;
 
-    const slide = slides[index];
+    track.style.transition = animate ? transition : "none";
 
-const offset =
-  viewport.clientWidth / 2 -
-  slide.offsetLeft -
-  slide.offsetWidth / 2;
+    const offset =
+      viewport.clientWidth / 2 -
+      slide.offsetLeft -
+      slide.offsetWidth / 2;
 
-track.style.transform = `translateX(${offset}px)`;const slide = slides[index];
+    track.style.transform = `translateX(${offset}px)`;
 
-const offset =
-  viewport.clientWidth / 2 -
-  slide.offsetLeft -
-  slide.offsetWidth / 2;
-
-track.style.transform = `translateX(${offset}px)`;
-
-    slides.forEach((slide, n) => {
-      slide.classList.toggle("active", n === index);
+    slides.forEach((item, i) => {
+      item.classList.toggle("active", i === position);
     });
 
-    [...dots.children].forEach((dot, n) => {
-      dot.classList.toggle("active", n === index);
+    [...dots.children].forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
     });
   }
 
+  // Navegação
+  function goTo(target) {
+    pauseSlide(slides[position]);
+
+    if (target >= total) {
+      index = 0;
+      position = total + 1;
+    } else if (target < 0) {
+      index = total - 1;
+      position = 0;
+    } else {
+      index = target;
+      position = target + 1;
+    }
+
+    updatePosition(true);
+  }
+
+  // Corrige o salto das cópias ao chegar nas extremidades
+  track.addEventListener("transitionend", (e) => {
+    if (e.propertyName !== "transform") return;
+
+    if (position === 0) {
+      position = total;
+      updatePosition(false);
+    } else if (position === total + 1) {
+      position = 1;
+      updatePosition(false);
+    }
+
+    requestAnimationFrame(() => {
+      track.style.transition = transition;
+    });
+  });
+
   // Setas
-  prev.addEventListener("click", () => {
-    goTo(index - 1);
-  });
+  prev.addEventListener("click", () => goTo(index - 1));
+  next.addEventListener("click", () => goTo(index + 1));
 
-  next.addEventListener("click", () => {
-    goTo(index + 1);
-  });
-
-  // Navegação por toque no celular
-  
-  // Navegação por deslize no celular
+  // Deslize nas laterais dos vídeos
   slides.forEach((slide) => {
     const videoWrap = slide.querySelector(".video-wrap");
     if (!videoWrap) return;
 
     ["left", "right"].forEach((side) => {
       const zone = document.createElement("div");
+
       zone.className = `swipe-zone ${side}`;
       zone.setAttribute("aria-hidden", "true");
 
@@ -171,18 +220,11 @@ track.style.transform = `translateX(${offset}px)`;
     });
   });
 
+  // Reposiciona ao alterar o tamanho da tela
+  window.addEventListener("resize", () => {
+    updatePosition(false);
+  });
 
-  // Estado inicial
-  goTo(0);
-});
-
-window.addEventListener("resize", () => {
-  const slide = slides[index];
-
-  const offset =
-    viewport.clientWidth / 2 -
-    slide.offsetLeft -
-    slide.offsetWidth / 2;
-
-  track.style.transform = `translateX(${offset}px)`;
+  // Posição inicial
+  updatePosition(false);
 });
