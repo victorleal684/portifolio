@@ -599,6 +599,19 @@ footer {
 
 /* YouTube video integration */
 
+
+.video-wrap {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .video-wrap iframe {
   display: block;
   width: 100%;
@@ -607,6 +620,3 @@ footer {
   background: #000;
 }
 
-.video-wrap {
-  overflow: hidden;
-}
